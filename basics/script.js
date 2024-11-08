@@ -9,11 +9,23 @@ scene.add(mesh);
 
 //sizes
 const sizes = {
-    width: 800,
-    height: 600
+  width: 800,
+  height: 600,
 };
 
 //camera
-const camera = new THREE.PrespectiveCamera( 75/*fov*/, sizes.width / sizes.height/*Aspect ratio*/);
+const camera = new THREE.PerspectiveCamera(
+  75 /*fov*/,
+  sizes.width / sizes.height /*Aspect ratio*/
+);
+camera.position.z = 3;
 scene.add(camera);
 
+//renderer
+
+const canvas = document.querySelector(".draw"); //canvas class
+const renderer = new THREE.WebGLRenderer({
+  canvas: canvas,
+});
+renderer.setSize(sizes.width, sizes.height);
+renderer.render(scene, camera);
